@@ -10,7 +10,12 @@ public class IntegerSet {
 	public IntegerSet() {
 		set = new ArrayList<Integer>();
 	}
-
+	
+private List<Integer> getSet() {
+	return set;
+}
+	
+	
 	// Clears the internal representation of the set
 	public void clear() {
 		set = new ArrayList<Integer>();
@@ -98,12 +103,16 @@ public class IntegerSet {
 	};
 
 	// Set union
-	public void union(IntegerSet intSetb) {
+	public IntegerSet union(IntegerSet intSetb) {
+		IntegerSet firstSet = new IntegerSet();
 		for (Integer element:set) {
-			intSetb.add(element);
-			
-			
+			firstSet.add(element);
 		}
+		
+		for (Integer element:intSetb.getSet()) {
+			firstSet.add(element);
+		}
+		return firstSet;
 		
 	};
 
@@ -114,14 +123,13 @@ public class IntegerSet {
 	}
 
 	// Set intersection
-	public void intersect(IntegerSet intSetb) {
+	public IntegerSet intersect(IntegerSet intSetb) {
+		IntegerSet firstIntegerSet = new IntegerSet();
 		for(Integer element:set) {
-			if  (! intSetb.contains(element))
-				set.remove(element);
-			
-			
+			if  (intSetb.contains(element))
+				firstIntegerSet.add(element);
 		}
-
+return firstIntegerSet;
 	};
 
 	// Set difference, i.e., s1 –s2
@@ -141,7 +149,7 @@ public class IntegerSet {
 
 	// Return String representation of your set
 	public String toString() {
-		return "true";
+		return set.toString();
 
 	}; // return String representation of your set
 
